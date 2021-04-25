@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>The Library</title>
+  </head>
+  <body>
+    <header>
+      <h1>The Library</h1>
+    </header>
+
+    <main>
+      <div class="add-books">
+        add books
+        <form>
+          <label for="bname"
+            >name
+            <input type="text" id="bname" name="bname" value="Title" />
+          </label>
+          <label for="bauthor"
+            >author
+            <input type="text" id="bauthor" name="bauthor" value="Author" />
+          </label>
+          <label for="bpages"
+            >pages
+            <input type="number" id="bpages" name="bpages" value="0" />
+          </label>
+          <label for="bread"
+            >read?
+            <input type="checkbox" id="bread" name="bread" />
+          </label>
+          <button type="submit">add book</button>
+        </form>
+      </div>
+      <div class="book-list">
+        <div class="book-item">
+          <h2>book title</h2>
+          <sup>by</sup>
+          <h2>book author</h2>
+          <h3>300 pages</h3>
+          <h4>has not been read yet</h4>
+        </div>
+        <div class="book-item">
+          <h2>another book title</h2>
+          <sup>by</sup>
+          <h2>book author</h2>
+          <h3>300 pages</h3>
+          <h4>has not been read yet</h4>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
