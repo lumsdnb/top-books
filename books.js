@@ -5,7 +5,10 @@ function Book(title, author, pages, wasRead) {
   this.author = author;
   this.pages = pages;
   this.wasRead = wasRead;
-
+  this.toggleRead = () => {
+    console.log('toggle read');
+    this.wasRead != this.wasRead;
+  };
   this.info = () => {
     return `${this.title} by ${this.author}, ${this.pages} pages ${
       this.wasRead ? 'has been read already' : 'not read yet'
@@ -36,6 +39,7 @@ function addBookToLibrary() {
   document.getElementById('add-form').reset();
   console.log(myLibrary);
   renderBooks();
+  openForm();
 }
 
 //------------------------------------
@@ -48,14 +52,43 @@ function renderBooks() {
     const bookAuthor = document.createElement('h3');
     const bookPages = document.createElement('h4');
     const bookWasRead = document.createElement('h3');
+    const removeBtn = document.createElement('button');
+    const toggleRead = document.createElement('button');
+    toggleRead.innerHTML = 'read';
+    toggleRead.onclick = toggleRead;
+    removeBtn.onclick = removeItem;
+    removeBtn.innerHTML = 'remove';
     newBookEl.classList.add('book-item');
     bookTitle.innerHTML = book.title;
     bookAuthor.innerHTML = book.author;
     bookPages.innerHTML = `${book.pages} pages`;
-    bookWasRead.innerHTML = book.wasRead;
-    newBookEl.append(bookTitle, bookAuthor, bookPages, bookWasRead);
+    bookWasRead.innerHTML = book.wasRead ? 'was read' : 'not read yet';
+    newBookEl.append(
+      bookTitle,
+      bookAuthor,
+      bookPages,
+      bookWasRead,
+      toggleRead,
+      removeBtn
+    );
     parentEl.appendChild(newBookEl);
   });
 }
+
+const openForm = () => {
+  const hiddenDiv = document.querySelector('.add-books');
+  const addBtn = document.querySelector('.add-btn');
+  if (addBtn.innerHTML === '-') {
+    addBtn.innerHTML = '+';
+    hiddenDiv.classList.add('--hidden');
+  } else if (addBtn.innerHTML === '+') {
+    addBtn.innerHTML = '-';
+    hiddenDiv.classList.remove('--hidden');
+  }
+};
+
+const removeItem = () => {
+  console.log(this.Element);
+};
+
 renderBooks();
-// console.log(parentEl);
