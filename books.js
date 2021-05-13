@@ -51,7 +51,7 @@ function renderBooks() {
     const bookTitle = document.createElement('h2');
     const bookAuthor = document.createElement('h3');
     const bookPages = document.createElement('h4');
-    const bookWasRead = document.createElement('h3');
+    const bookWasRead = document.createElement('span');
     const removeBtn = document.createElement('button');
     const toggleRead = document.createElement('button');
     toggleRead.innerHTML = 'read';
@@ -88,7 +88,7 @@ const openForm = () => {
 };
 
 const removeItem = () => {
-  console.log(this.Element);
+  console.log(this);
 };
 
 renderBooks();

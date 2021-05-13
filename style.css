@@ -1,10 +1,13 @@
+html {
+  --big-heading: 4.8rem;
+  --dark-gray: rgb(37, 37, 37);
+  --dark-gray2: rgb(90, 90, 90);
+  --white-off: rgb(240, 240, 240);
+}
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  --big-heading: 4.8rem;
-  --dark-gray: rgb(37, 37, 37);
-  --white-off: rgb(240, 240, 240);
 }
 
 body {
@@ -28,43 +31,47 @@ header {
 main {
   color: var(--dark-gray);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
 }
 
 .add-books {
-  max-width: 40vw;
+  width: 100%;
   padding: 1rem;
-  border-radius: 0 1rem 1rem 0;
+  border-radius: 0 0 1rem 1rem;
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 2px 4px 0px inset;
   background: url('https://www.toptal.com/designers/subtlepatterns/patterns/binding_light.png');
 }
 
 .add-btn {
   display: flex;
   flex-direction: row;
-  width: 10rem;
+  width: 100%;
+  height: 2rem;
   text-align: center;
   align-items: center;
   justify-content: center;
   padding: 0;
   margin: 0;
-  border: none;
+
   font-size: 2rem;
-  border-radius: 1rem 0 0 1rem;
+  border-radius: 1rem 1rem 0 0;
+  border: 0.1rem var(--dark-gray2) solid;
 }
 .add-btn:hover {
   transition: all 60ms;
-
-  box-shadow: rgba(0, 0, 0, 0.6) 0px 2px 4px 0px inset;
+  background-color: var(--dark-gray2);
+  color: var(--white-off);
 }
 .center {
   text-align: center;
 }
 form {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-end;
   justify-content: center;
+  color: var(--dark-gray);
 }
 
 .--hidden {
@@ -78,6 +85,9 @@ form > * {
 
 input {
   padding: 1rem;
+  border: none;
+  background-color: var(--white-off);
+  color: var(--dark-gray);
 }
 
 input[type='checkbox'] {
@@ -95,15 +105,39 @@ input[type='checkbox'] {
 }
 
 .book-item {
-  padding: 1rem;
+  padding: 0.1rem;
   background-color: var(--white-off);
-  width: fit-content;
   height: fit-content;
   margin: 0.5rem;
-  padding: 1.3rem;
-  border-radius: 0.4rem;
+  border-radius: 0.3rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.book-item > * {
+  margin: 1rem;
+}
+button {
+  border: none;
+  background-color: var(--dark-gray);
+  color: var(--white-off);
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  height: 3em;
+  width: 5em;
+}
+
+button:hover {
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) all 40ms;
+  background-color: var(--white-off);
+  color: var(--dark-gray);
+  border: 0.1rem var(--dark-gray) solid;
 }
 
 .book-item:hover {
   box-shadow: rgba(0, 0, 0, 0.6) 0px 2px 4px 0px inset;
+}
+
+.book-item > h2 + h3 {
+  flex-basis: 100%;
 }
