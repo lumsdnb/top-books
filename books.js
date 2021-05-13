@@ -71,7 +71,7 @@ function renderBooks() {
       toggleRead,
       removeBtn
     );
-    parentEl.appendChild(newBookEl);
+    parentEl.prepend(newBookEl);
   });
 }
 
