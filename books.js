@@ -76,7 +76,7 @@ function renderBooks() {
 }
 
 const openForm = () => {
-  const hiddenDiv = document.querySelector('.add-books');
+  const hiddenDiv = document.querySelector('#add-form');
   const addBtn = document.querySelector('.add-btn');
   if (addBtn.innerHTML === '-') {
     addBtn.innerHTML = '+';
