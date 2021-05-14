@@ -1,4 +1,4 @@
-//simple
+//----- constructor -----
 
 function Book(title, author, pages, wasRead) {
   this.title = title;
@@ -21,7 +21,7 @@ let myLibrary = [
   { title: 'another one', author: 'hp lowcraft', pages: 666, wasRead: false },
 ];
 
-//fired on form submission
+//----- on submit form -----
 function addBookToLibrary() {
   event.preventDefault();
   console.log('yo');
@@ -42,21 +42,22 @@ function addBookToLibrary() {
   openForm();
 }
 
-//------------------------------------
+//----- redraw book list -----
 function renderBooks() {
   const parentEl = document.getElementById('book-list');
   parentEl.innerHTML = '';
-  myLibrary.forEach((book) => {
+  myLibrary.forEach((book, index) => {
     const newBookEl = document.createElement('div');
     const bookTitle = document.createElement('h2');
     const bookAuthor = document.createElement('h3');
     const bookPages = document.createElement('h4');
     const bookWasRead = document.createElement('span');
     const removeBtn = document.createElement('button');
+    newBookEl.dataset.id = index;
     const toggleRead = document.createElement('button');
     toggleRead.innerHTML = 'read';
-    toggleRead.onclick = toggleRead;
-    removeBtn.onclick = removeItem;
+    toggleRead.onclick = handleRead.bind(index);
+    removeBtn.onclick = removeItem.bind(index);
     removeBtn.innerHTML = 'remove';
     newBookEl.classList.add('book-item');
     bookTitle.innerHTML = book.title;
@@ -87,8 +88,19 @@ const openForm = () => {
   }
 };
 
-const removeItem = () => {
-  console.log(this);
+const removeItem = (i) => {
+  const el = i.originalTarget.parentNode.getAttribute('data-id');
+  // el.remove();
+  // let render function handle this instead, rm from data
+  myLibrary.splice(el, 1);
+  console.log(el);
+  console.log(myLibrary);
+  renderBooks();
+};
+
+const handleRead = (i) => {
+  const index = i.originalTarget.parentNode.getAttribute('data-id');
+  console.log(myLibrary[index].toggleRead());
 };
 
 renderBooks();
