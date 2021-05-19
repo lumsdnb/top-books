@@ -8,11 +8,11 @@ function Book(title, author, pages, wasRead) {
   this.toggleRead = () => {
     console.log('toggle read');
     this.wasRead != this.wasRead;
+    console.log(this.wasRead);
   };
   this.info = () => {
-    return `${this.title} by ${this.author}, ${this.pages} pages ${
-      this.wasRead ? 'has been read already' : 'not read yet'
-    }`;
+    return `${this.title} by ${this.author}, ${this.pages} pages ${this.wasRead ? 'has been read already' : 'not read yet'
+      }`;
   };
 }
 
@@ -26,11 +26,8 @@ function addBookToLibrary() {
   event.preventDefault();
   console.log('yo');
   const theForm = document.getElementById('add-form');
-  const aBook = Object.create(Book);
-  aBook.title = theForm.elements['bname'].value;
-  aBook.author = theForm.elements['bauthor'].value;
-  aBook.pages = theForm.elements['bpages'].value;
-  aBook.wasRead = theForm.elements['bread'].checked;
+  //create object from form values
+  const aBook = new Book(theForm.elements['bname'].value, theForm.elements['bauthor'].value, theForm.elements['bpages'].value, theForm.elements['bread'].checked);
 
   console.log(aBook);
   // const newBook = Object.create(Book(bTitle, bAuthor, bPages, true));
@@ -100,7 +97,8 @@ const removeItem = (i) => {
 
 const handleRead = (i) => {
   const index = i.originalTarget.parentNode.getAttribute('data-id');
-  console.log(myLibrary[index].toggleRead());
+  myLibrary[index].toggleRead();
+  renderBooks()
 };
 
 renderBooks();
