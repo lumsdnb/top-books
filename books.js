@@ -125,7 +125,6 @@ const firstLoad=()=>{
     objList.forEach((book)=>{
       const b = new Book(book.title, book.author, book.pages, book.wasRead);
       myLibrary.push(b);
-
     })
     renderBooks();
     console.log("loaded");
