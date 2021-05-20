@@ -35,20 +35,6 @@ function addBookToLibrary() {
   openForm();
 }
 
-function testBooks(){
-  const aBook = new Book('a book title',
-    'jk rolling',
-    5,
-    true)
-
- // console.log(aBook);
-  // const newBook = Object.create(Book(bTitle, bAuthor, bPages, true));
-  // console.log(newBook);
-  myLibrary.push(aBook);
-  console.log(myLibrary);
-  renderBooks()
-}
-
 //----- redraw book list -----
 function renderBooks() {
   const parentEl = document.getElementById('book-list');
@@ -83,6 +69,7 @@ function renderBooks() {
   });
 }
 
+//----- UI toggle-----
 const openForm = () => {
   const hiddenDiv = document.querySelector('#add-form');
   const addBtn = document.querySelector('.add-btn');
@@ -129,6 +116,5 @@ const firstLoad=()=>{
     renderBooks();
     console.log("loaded");
   }
-  testBooks()
 }
 firstLoad()
