@@ -6,9 +6,7 @@ function Book(title, author, pages, wasRead) {
   this.pages = pages;
   this.wasRead = wasRead;
   this.toggleRead = () => {
-    console.log('toggle read');
-    this.wasRead != this.wasRead;
-    console.log(this.wasRead);
+    this.wasRead = !this.wasRead
   };
   this.info = () => {
     return `${this.title} by ${this.author}, ${this.pages} pages ${this.wasRead ? 'has been read already' : 'not read yet'
@@ -17,26 +15,38 @@ function Book(title, author, pages, wasRead) {
 }
 
 let myLibrary = [
-  { title: 'a book title', author: 'jk rolling', pages: 5, wasRead: true },
-  { title: 'another one', author: 'hp lowcraft', pages: 666, wasRead: false },
-];
+  ];
 
 //----- on submit form -----
 function addBookToLibrary() {
   event.preventDefault();
-  console.log('yo');
+ 
   const theForm = document.getElementById('add-form');
   //create object from form values
   const aBook = new Book(theForm.elements['bname'].value, theForm.elements['bauthor'].value, theForm.elements['bpages'].value, theForm.elements['bread'].checked);
 
-  console.log(aBook);
   // const newBook = Object.create(Book(bTitle, bAuthor, bPages, true));
   // console.log(newBook);
   myLibrary.push(aBook);
   document.getElementById('add-form').reset();
-  console.log(myLibrary);
+
+  storeLocalData()
   renderBooks();
   openForm();
+}
+
+function testBooks(){
+  const aBook = new Book('a book title',
+    'jk rolling',
+    5,
+    true)
+
+ // console.log(aBook);
+  // const newBook = Object.create(Book(bTitle, bAuthor, bPages, true));
+  // console.log(newBook);
+  myLibrary.push(aBook);
+  console.log(myLibrary);
+  renderBooks()
 }
 
 //----- redraw book list -----
@@ -92,6 +102,7 @@ const removeItem = (i) => {
   myLibrary.splice(el, 1);
   console.log(el);
   console.log(myLibrary);
+  storeLocalData()
   renderBooks();
 };
 
@@ -101,4 +112,24 @@ const handleRead = (i) => {
   renderBooks()
 };
 
-renderBooks();
+function storeLocalData() {
+  localStorage.setItem(`myLibrary`, JSON.stringify(myLibrary));
+}
+
+const firstLoad=()=>{
+  if(!localStorage.myLibrary){
+    renderBooks()
+  }else{
+    let objList=localStorage.getItem("myLibrary")
+    objList=JSON.parse(objList)
+    objList.forEach((book)=>{
+      const b = new Book(book.title, book.author, book.pages, book.wasRead);
+      myLibrary.push(b);
+
+    })
+    renderBooks();
+    console.log("loaded");
+  }
+  testBooks()
+}
+firstLoad()
