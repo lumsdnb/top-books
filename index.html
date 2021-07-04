@@ -20,15 +20,35 @@
         <form id="add-form" class="--hidden" onsubmit="addBookToLibrary()">
           <label for="bname"
             >name
-            <input type="text" id="bname" name="bname" value="Title" />
+            <input
+              type="text"
+              id="bname"
+              name="bname"
+              placeholder="Title"
+              required
+            />
           </label>
           <label for="bauthor"
             >author
-            <input type="text" id="bauthor" name="bauthor" value="Author" />
+            <input
+              type="text"
+              id="bauthor"
+              name="bauthor"
+              placeholder="Author"
+              required
+            />
           </label>
           <label for="bpages"
             >pages
-            <input type="number" id="bpages" name="bpages" value="0" />
+            <input
+              type="number"
+              min="1"
+              max="99999"
+              id="bpages"
+              name="bpages"
+              placeholder="321"
+              required
+            />
           </label>
           <label for="bread"
             >read?
